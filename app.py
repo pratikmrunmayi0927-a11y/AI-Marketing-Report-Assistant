@@ -471,6 +471,24 @@ if st.button("🚀 Generate AI Report"):
     with st.spinner("Generating AI Report..."):
             st.session_state.result = generate_marketing_insights(prompt)
 
+    # ==========================================
+# SAVE REPORT
+# ==========================================
+
+if "result" in st.session_state:
+
+    if st.button("💾 Save Report"):
+
+        save_report(
+            date=str(pd.Timestamp.now().date()),
+            campaign="Marketing Campaign",
+            spend=float(df["Spend"].sum()),
+            revenue=float(df["Revenue"].sum()),
+            report=st.session_state.result
+        )
+
+        st.success("✅ Report saved successfully!")
+
     from datetime import datetime
 
     save_report(
@@ -544,6 +562,59 @@ if "result" in st.session_state:
 # -------------------------
 else:
     st.info("📂 Please upload a CSV file.")
+
+# ==========================================
+# SAVED REPORTS
+# ==========================================
+
+st.divider()
+
+st.subheader("📁 Saved Marketing Reports")
+
+saved_reports = get_reports()
+
+if saved_reports:
+
+    for report in saved_reports:
+
+        report_id = report[0]
+        date = report[1]
+        campaign = report[2]
+        spend = report[3]
+        revenue = report[4]
+        report_text = report[5]
+
+        with st.expander(f"📊 {campaign} | {date}"):
+             col1, col2 = st.columns(2)
+
+        with col1:
+            try:
+                spend_value = float(spend)
+            except (ValueError, TypeError):
+                spend_value = 0.0
+
+            st.metric(
+                "💰 Spend",
+                f"₹{spend_value:,.2f}"
+            )
+
+        with col2:
+            try:
+                revenue_value = float(revenue)
+            except (ValueError, TypeError):
+                revenue_value = 0.0
+
+            st.metric(
+                "💵 Revenue",
+                f"₹{revenue_value:,.2f}"
+            )        
+
+        st.markdown("### 🤖 AI Marketing Insights")
+
+        st.write(report_text)
+
+else:
+    st.info("No saved reports yet.")
 
 
 st.markdown("---")
