@@ -106,3 +106,16 @@ AI-Marketing-Report-Assistant/
 ├── data/
 ├── database/
 └── reports/
+## 📸 Screenshots
+
+### 📊 Marketing Dashboard
+
+![Marketing Dashboard](screenshots/dashboard.png)
+
+### 🤖 AI Marketing Insights
+
+![AI Marketing Insights](screenshots/ai-insights.png)
+
+### 📄 Reports
+
+![Reports](screenshots/reports.png)
