@@ -4,7 +4,7 @@ An AI-powered marketing analytics dashboard that analyzes campaign performance, 
 
 ## 🚀 Live Demo
 
-👉 Add your Streamlit Cloud link here
+[👉 Add your Streamlit Cloud link here](https://ai-marketing-report-assistant-xdsepewtzoqkwra239qcq9.streamlit.app/)
 
 ## 📌 Project Overview
 
